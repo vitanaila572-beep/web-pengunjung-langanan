@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar - Nexora</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+    body{
+      background:#f4f7fb;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+    }
+    .register-box{
+      background:#fff;
+      width:340px;
+      padding:30px;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,.1);
+    }
+    h2{text-align:center;color:#2563eb;margin-bottom:8px}
+    .sub{text-align:center;color:#666;font-size:14px;margin-bottom:20px}
+    input{
+      width:100%;
+      padding:12px;
+      margin-bottom:15px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      font-size:14px;
+    }
+    button{
+      width:100%;
+      padding:12px;
+      background:#2563eb;
+      color:#fff;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:15px;
+    }
+    .link{
+      text-align:center;
+      margin-top:18px;
+      font-size:14px;
+    }
+    .link a{
+      color:#2563eb;
+      text-decoration:none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="register-box">
+    <h2>Daftar</h2>
+    <p class="sub">Buat akun Nexora</p>
+
+    <form>
+      <input type="text" placeholder="Nama Lengkap" required>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <input type="password" placeholder="Konfirmasi Password" required>
+
+      <button type="submit">Daftar</button>
+    </form>
+
+    <div class="link">
+      Sudah punya akun?
+      <a href="login.html">Login</a>
+    </div>
+  </div>
+
+</body>
+</html>
