@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - Nexora</title>
 
   <style>
@@ -21,17 +21,8 @@
       border-radius:12px;
       box-shadow:0 4px 12px rgba(0,0,0,.1);
     }
-    h2{
-      text-align:center;
-      color:#2563eb;
-      margin-bottom:8px;
-    }
-    .sub{
-      text-align:center;
-      color:#666;
-      font-size:14px;
-      margin-bottom:20px;
-    }
+    h2{text-align:center;color:#2563eb;margin-bottom:8px}
+    .sub{text-align:center;color:#666;font-size:14px;margin-bottom:20px}
     input{
       width:100%;
       padding:12px;
@@ -68,9 +59,9 @@
     <p class="sub">Masuk ke akun Nexora</p>
 
     <form id="loginForm">
-  <input name="email" type="email" required>
-  <input name="password" type="password" required>
-  <button type="submit">Masuk</button>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Masuk</button>
     </form>
 
     <div class="link">
@@ -80,25 +71,33 @@
   </div>
 
   <script type="module">
-import { auth } from "./firebase-config.js";
-import { signInWithEmailAndPassword }
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+    import { auth } from "./firebase-config.js";
+    import { signInWithEmailAndPassword }
+    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
-const form = document.getElementById("loginForm");
+    const form = document.getElementById("loginForm");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-  const email = form.email.value;
-  const password = form.password.value;
+      const email = form.elements["email"].value;
+      const password = form.elements["password"].value;
 
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    window.location.href = "dashboard.html";
-  } catch (err) {
-    alert("Email atau password salah!");
-  }
-});
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        if (
+          error.code === "auth/invalid-credential" ||
+          error.code === "auth/wrong-password" ||
+          error.code === "auth/user-not-found"
+        ) {
+          alert("❌ Email atau password salah!");
+        } else {
+          alert("⚠️ Terjadi kesalahan, silakan coba lagi.");
+        }
+      }
+    });
   </script>
 
 </body>
