@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Nexora</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+    body{background:#f4f7fb;color:#333}
+    header{
+      background:#2563eb;color:#fff;
+      padding:15px 10%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .container{
+      max-width:700px;
+      margin:40px auto;
+      padding:20px;
+    }
+    .card{
+      background:#fff;
+      border-radius:12px;
+      padding:25px;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+    }
+    .status{
+      display:inline-block;
+      background:#dbeafe;
+      color:#1d4ed8;
+      padding:6px 12px;
+      border-radius:20px;
+      margin-top:10px;
+      font-size:14px;
+    }
+    .btn{
+      display:inline-block;
+      margin-top:20px;
+      padding:10px 18px;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      text-decoration:none;
+    }
+    .upgrade{background:#2563eb;color:#fff}
+    .logout{background:#ef4444;color:#fff}
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>NEXORA</h2>
+  <button id="logoutBtn" class="btn logout">Logout</button>
+</header>
+
+<div class="container">
+  <div class="card">
+    <h2>Selamat Datang 👋</h2>
+    <p id="userEmail">Memuat...</p>
+
+    <div class="status">FREE MEMBER</div>
+
+    <br>
+    <a href="pricing.html" class="btn upgrade">
+      Upgrade ke Premium
+    </a>
+  </div>
+</div>
+
+<script type="module">
+import { auth } from "./firebase-config.js";
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+const emailText = document.getElementById("userEmail");
+const logoutBtn = document.getElementById("logoutBtn");
+
+onAuthStateChanged(auth, (user) => {
+  if(user){
+    emailText.textContent = user.email;
+  }else{
+    window.location.href = "login.html";
+  }
+});
+
+logoutBtn.addEventListener("click", async () => {
+  await signOut(auth);
+  window.location.href = "login.html";
+});
+</script>
+
+</body>
+</html>
