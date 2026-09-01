@@ -73,5 +73,28 @@
     </div>
   </div>
 
+  <script type="module">
+import { auth } from "./firebase-config.js";
+import { createUserWithEmailAndPassword }
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+const form = document.getElementById("registerForm");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = form.querySelector('input[type="email"]').value;
+  const password = form.querySelectorAll('input[type="password"]')[0].value;
+
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    alert("Akun berhasil dibuat!");
+    window.location.href = "login.html";
+  } catch (error) {
+    alert(error.message);
+  }
+});
+  </script>
+
 </body>
 </html>
